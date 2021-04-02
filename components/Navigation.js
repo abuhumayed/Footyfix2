@@ -1,32 +1,27 @@
-import 'react-native-gesture-handler';
-import React from 'react';
-import { StyleSheet, Text, View,Dimensions } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View,Dimensions } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
-import LoginScreen from './screens/LoginScreen';
+import LoginScreen from '../screens/LoginScreen';
 import { createStackNavigator } from '@react-navigation/stack';
-import RegisterScreen from './screens/RegisterScreen';
-import HomeScreen from './screens/HomeScreen';
-import AddChatScreen from './screens/AddChatScreen';
-import ChatScreen from './screens/ChatScreen';
+import RegisterScreen from '../screens/RegisterScreen';
+import HomeScreen from '../screens/HomeScreen';
+import AddChatScreen from '../screens/AddChatScreen';
+import ChatScreen from '../screens/ChatScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './screens/Home';
-import Profile from './screens/Profile';
-import Settings from './screens/Settings';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
+import Home from '../screens/Home';
+import Profile from '../screens/Profile';
+import Settings from '../screens/Settings';
+
+
+
+
+const fullScreenWidth = Dimensions.get('window').width
 
 const Stack = createStackNavigator();
-
-const globalScreenOptions = {
-  headerStyle: { backgroundColor: "#ECFAED"},
-  headerTitleStyle: {color: "#067B25"},
-  headerTintColor: "#067B25",
-  
-};
-const fullScreenWidth = Dimensions.get('window').width
 const Tab = createBottomTabNavigator();
-
 
 function HomeStackScreen() {
     return (
@@ -74,10 +69,10 @@ function HomeStackScreen() {
       </Stack.Navigator>
     );
   }
-
-  function homey()
-  {
-      <Tab.Navigator 
+  export default function Navigation(props) {
+    return (
+       <NavigationContainer>
+           <Tab.Navigator 
            screenOptions = {({route}) =>({
                headerTitle : () => <Text>Header</Text> ,
                headerStyle: { backgroundColor: "#ECFAED"},
@@ -119,21 +114,10 @@ function HomeStackScreen() {
             <Tab.Screen name = "Chat" component = {ChatStackScreen} />
             <Tab.Screen name = "Settings" component = {SettingsStackScreen} />
            </Tab.Navigator>
-  }
+       </NavigationContainer>
+    )
+}
 
-export default function App() {
-  return (
-    
-    <NavigationContainer>
-      <Stack.Navigator 
-      
-      screenOptions = {globalScreenOptions} >   
-    
-    <Stack.Screen name = 'Login' component ={LoginScreen}></Stack.Screen>
-    <Stack.Screen name = 'Register' component ={RegisterScreen} ></Stack.Screen>
-    <Stack.Screen name = 'toHome' component ={homey}></Stack.Screen>
-    
-    </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+
+
+const styles = StyleSheet.create({})
